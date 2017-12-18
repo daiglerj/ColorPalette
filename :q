@@ -1,0 +1,28 @@
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+
+
+# Initial commit
+First Commit
+#
+# Changes to be committed:
+#	new file:   src/App.css
+#	new file:   src/App.js
+#	new file:   src/App.test.js
+#	new file:   src/Letter.js
+#	new file:   src/index.css
+#	new file:   src/index.js
+#	new file:   src/logo.svg
+#	new file:   src/registerServiceWorker.js
+#	new file:   src/square.js
+#
+# Untracked files:
+#	.gitignore
+#	README.md
+#	package.json
+#	public/
+
