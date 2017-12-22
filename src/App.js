@@ -98,12 +98,23 @@ class App extends Component {
             display:"inline-block",
             marginRight: 10
     }
-    
+    var buttonStyle = {
+        backgroundColor: "#4CAF50",
+        border: "none",
+        color:"white",
+        textAlign: "center",
+        textDecoration: "none",
+        fontSize:16,
+        padding: "10px 32px",
+        cursor: "pointer",
+        marginLeft: 10
+    }
+
     return (
       <div style={appStyle} className="App">
         <ul style={listStyle}><ColorList handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/></ul>
             <input type="text" value={this.state.inputValue} onChange = {this.handleChange}/>
-            <button onClick = {this.handleSubmit}>Click</button>
+            <button style = {buttonStyle} onClick = {this.handleSubmit}>Add Color</button>
       </div>
     );
   }
