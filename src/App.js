@@ -33,25 +33,7 @@ class App extends Component {
     componentWillMount(){
         var count = -1
         var colors= []
-        var query = firebase.database().ref("myapp/colors");
-        query.once("value",(snapshot)=> {
-            snapshot.forEach((childSnapshot)=> {
-              var key = childSnapshot.key;
-              var color = childSnapshot.child("color").val();
-              var id = childSnapshot.child("id").val();
-              colors = [...colors,{id:id,color:color}]
-              this.setState({
-                    squares:colors
-            })
-          });
-        })
-        query = firebase.database().ref("myapp/count");
-        query.once("value",(snapshot)=> {
-            count = snapshot.val()
-            this.setState({
-                count:count
-            })
-        })
+       
         
      
     }
@@ -75,9 +57,7 @@ class App extends Component {
         },()=>{
             console.log(this.state.squares)
         })
-        firebase.database().ref('myapp/colors').push({id:count, color:this.state.inputValue})
-        var query = firebase.database().ref("myapp").child("count"); 
-        query.set(count)
+
         
 
     }
