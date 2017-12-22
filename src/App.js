@@ -6,15 +6,7 @@ import firebase from 'firebase'
 import reactfire from 'reactfire'
 
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAb72N_X06ilinY2jMx7p003gtTx3Od8dk",
-    authDomain: "reactjs-321fb.firebaseapp.com",
-    databaseURL: "https://reactjs-321fb.firebaseio.com",
-    projectId: "reactjs-321fb",
-    storageBucket: "reactjs-321fb.appspot.com",
-    messagingSenderId: "1000229939166"
-  };
-  firebase.initializeApp(config);
+
 class App extends Component {
     constructor(){
         super();
