@@ -20,7 +20,6 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
-        this.handleHover = this.handleHover.bind(this)
     }
     componentWillMount(){
         var count = -1
@@ -83,9 +82,7 @@ class App extends Component {
         
         
     }
-    handleHover(event){
-        console.log("Hello")
-    }
+ 
 
 
   render() {
@@ -139,7 +136,7 @@ class ColorList extends React.Component {
             marginRight: 10
         }
         return(
-            <div>
+            <div id="ColorList">
                 {this.state.colors.map((color) => {
                  return <li key = {color.id} style={squareStyle}><Card {...this.props} id = {color.id} color={color.color} /></li>
                 })}
