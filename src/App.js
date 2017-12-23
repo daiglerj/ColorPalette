@@ -10,8 +10,6 @@ import reactfire from 'reactfire'
 class App extends Component {
     constructor(){
         super();
-        var query = firebase.database().ref("myapp/count")
-        console.log(query)
         this.state = {
             squares: [
             ],
