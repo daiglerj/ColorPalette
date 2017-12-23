@@ -29,5 +29,5 @@
 
 #ColorList {
     display: block;
-    height:200px;
+    min-height:250px;
 }
