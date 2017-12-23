@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Card} from './square'
+import {Card} from './ColorCard'
 import firebase from 'firebase'
 import reactfire from 'reactfire'
+import ColorButton from './ColorButton'
 
   // Initialize Firebase
 
@@ -19,6 +20,7 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleHover = this.handleHover.bind(this)
     }
     componentWillMount(){
         var count = -1
@@ -70,6 +72,9 @@ class App extends Component {
         
         
     }
+    handleHover(event){
+        console.log("Hello")
+    }
 
 
   render() {
@@ -88,23 +93,19 @@ class App extends Component {
             display:"inline-block",
             marginRight: 10
     }
-    var buttonStyle = {
-        backgroundColor: "#4CAF50",
-        border: "none",
-        color:"white",
-        textAlign: "center",
-        textDecoration: "none",
-        fontSize:16,
-        padding: "10px 32px",
-        cursor: "pointer",
-        marginLeft: 10
+
+    var inputStyle = {
+        width: 200,
+        height: 20,
+        fontSize:16
     }
 
     return (
       <div style={appStyle} className="App">
         <ul style={listStyle}><ColorList handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/></ul>
-            <input type="text" value={this.state.inputValue} onChange = {this.handleChange}/>
-            <button style = {buttonStyle} onClick = {this.handleSubmit}>Add Color</button>
+            <input type="text" value={this.state.inputValue} onChange = {this.handleChange} style = {inputStyle} />
+            <ColorButton onClick = {this.handleSubmit} />
+            
       </div>
     );
   }
