@@ -31,11 +31,24 @@ class App extends Component {
     }
     
     handleChange(event){
+        var newValue = ""
+        var currentInput = event.target.value
+        console.log(currentInput)
+        if((!currentInput.includes("#"))){
+            newValue = "#" + currentInput
+        }
+        else if(currentInput == "#"){
+            newValue = ""
+        }
+        else{
+            newValue = currentInput
+        }
         this.setState({
-            inputValue: event.target.value
+            inputValue: newValue
         })
     }
     handleSubmit(event){
+        console.log("hello")
         this.setState({
             count: this.state.count+1
         })
@@ -93,15 +106,16 @@ class App extends Component {
     }
 
     var inputStyle = {
-        width: 200,
+        width: 250,
         height: 20,
-        fontSize:16
+        fontSize:16,
+        padding: 5
     }
 
     return (
       <div style={appStyle} className="App">
         <ul style={listStyle}><ColorList handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/></ul>
-            <input type="text" value={this.state.inputValue} onChange = {this.handleChange} style = {inputStyle} />
+            <input type="text" value={this.state.inputValue} onChange = {this.handleChange} style = {inputStyle} placeholder="Enter the hex code of a color..."/>
             <ColorButton onClick = {this.handleSubmit} />
             
       </div>

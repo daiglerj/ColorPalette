@@ -11,7 +11,7 @@ export default class ColorButton extends Component {
     }
     handleHoverIn(){
         this.setState({
-            bgColor  :"#4CDA50"
+            bgColor  : "#4CDA50"
 
         })
     }
@@ -33,7 +33,7 @@ export default class ColorButton extends Component {
             marginLeft: 10
         }
         return(
-            <button style = {buttonStyle} onMouseEnter = {this.handleHoverIn} onMouseOut = {this.handleHoverOut} onClick = {this.props.handleSubmit}>Add Color</button>
+            <button style = {buttonStyle} onMouseEnter = {this.handleHoverIn} onMouseOut = {this.handleHoverOut} onClick = {this.props.onClick}>Add Color</button>
         )
     }
 }
