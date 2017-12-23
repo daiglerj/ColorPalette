@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import RemoveButton from './RemoveButton'
 
 class Square extends React.Component {
     render(){
@@ -28,7 +29,8 @@ class Label extends React.Component {
         return(
             <div>
                 <p style = {labelStyle}>{this.props.color}</p>
-                <button onClick={this.props.handleRemove.bind("e",this.props.id)}>Remove</button>
+          
+                <RemoveButton {...this.props} />
             </div>
             
         )

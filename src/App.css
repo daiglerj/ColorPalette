@@ -31,3 +31,22 @@
     display: block;
     min-height:250px;
 }
+
+.Remove{
+            background-color: #FF004f;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size:16;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10;
+            font-weight:bold;
+            border-radius: 5px
+}
+.Remove:hover{
+        background-color: #d9534f;
+        color:white
+
+}
