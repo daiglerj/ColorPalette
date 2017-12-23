@@ -29,9 +29,7 @@ class App extends Component {
         
      
     }
-    componentWillUnmount(){
-        this.firebaseRef.off();
-    }
+    
     handleChange(event){
         this.setState({
             inputValue: event.target.value
