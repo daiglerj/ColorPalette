@@ -6,7 +6,6 @@ import PaletteInput from './paletteInput'
 import PaletteSection from './PaletteSection'
 import Palette from "./Palette"
 import ToggleDisplay from 'react-toggle-display';
-  // Initialize Firebase
 
 class App extends Component {
     constructor(){
