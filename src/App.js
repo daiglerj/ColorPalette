@@ -13,6 +13,7 @@ class App extends Component {
         super();
         this.state = {
             paletteName:"",
+            newPaletteInput:"",
             existingPaletteInput: "",
             squares: [
             ],
@@ -24,10 +25,12 @@ class App extends Component {
         this.handleRemove = this.handleRemove.bind(this)
         this.handleGetPaletteInputChange = this.handleGetPaletteInputChange.bind(this)
         this.handleGetPalette = this.handleGetPalette.bind(this)
+        this.handleNewPaletteInput = this.handleNewPaletteInput.bind(this)
+        this.handleNewPalette = this.handleNewPalette.bind(this)
     }
     componentWillMount(){
         var count = -1
-        var colors= []
+        var colors = []
     }
     
     handleColorCodeChange(event){
@@ -87,6 +90,7 @@ class App extends Component {
         
         
     }
+    
     handleGetPaletteInputChange(event){
         this.setState({
             existingPaletteInput: event.target.value
@@ -117,7 +121,26 @@ class App extends Component {
         })
        
     }
- 
+    
+    handleNewPaletteInput(event){
+        this.setState({
+            newPaletteInput: event.target.value
+        })
+    }
+    handleNewPalette(event){
+        var name = this.state.newPaletteInput
+        this.setState({
+            paletteName:name
+        })
+        var nameWithoutSpaces = name.replace(" ","%20")
+        let url = "http://localhost:8080/newPalette/"
+        fetch(url,{
+            method:"POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({user:"New User",paletteName:name})
+
+        })
+    }
 
 
   render() {
@@ -148,7 +171,8 @@ class App extends Component {
             <h1>{this.state.paletteName}</h1>
         </ToggleDisplay>
         <ToggleDisplay if={this.state.paletteName == ""}>
-            <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
+            <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette} handleNewPaletteInput = {this.handleNewPaletteInput} 
+        handleNewPalette = {this.handleNewPalette}/>
         </ToggleDisplay>
         
         <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
