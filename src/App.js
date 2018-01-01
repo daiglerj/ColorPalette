@@ -49,7 +49,6 @@ class App extends Component {
     }
     
     handleAddColor(event){
-        console.log("hello")
         this.setState({
             count: this.state.count+1
         })
@@ -59,9 +58,15 @@ class App extends Component {
         this.setState({
             squares: [...this.state.squares,{id:this.state.count,color:this.state.inputValue}],
         },()=>{
-            console.log(this.state.squares)
         })
-        
+        var nameWithoutSpaces = this.state.paletteName.replace(" ","%20")
+        let url = "http://localhost:8080/addColor/"+nameWithoutSpaces
+        fetch(url,{
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({color:this.state.inputValue})
+        })
+
     }
     handleRemove(index,event){
         var length = this.state.squares.length
