@@ -6,3 +6,10 @@ body {
 #root{
     padding:50;
 }
+
+input {
+    width: 250;
+    height: 20;
+    font-size:16;
+    padding: 5
+}

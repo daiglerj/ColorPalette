@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Card} from './ColorCard'
-import firebase from 'firebase'
-import reactfire from 'reactfire'
-import ColorButton from './ColorButton'
-
+import PaletteInput from './paletteInput'
+import PaletteSection from './PaletteSection'
+import Palette from "./Palette"
+import ToggleDisplay from 'react-toggle-display';
   // Initialize Firebase
 
 class App extends Component {
     constructor(){
         super();
         this.state = {
+            paletteName:"",
+            existingPaletteInput: "",
             squares: [
             ],
             inputValue: "",
             count: 1
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleColorCodeChange = this.handleColorCodeChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleGetPaletteInputChange = this.handleGetPaletteInputChange.bind(this)
+        this.handleGetPalette = this.handleGetPalette.bind(this)
     }
     componentWillMount(){
         var count = -1
         var colors= []
-       
-        
-     
     }
     
-    handleChange(event){
+    handleColorCodeChange(event){
         var newValue = ""
         var currentInput = event.target.value
         console.log(currentInput)
@@ -46,6 +47,7 @@ class App extends Component {
             inputValue: newValue
         })
     }
+    
     handleSubmit(event){
         console.log("hello")
         this.setState({
@@ -59,9 +61,7 @@ class App extends Component {
         },()=>{
             console.log(this.state.squares)
         })
-
         
-
     }
     handleRemove(index,event){
         var length = this.state.squares.length
@@ -82,6 +82,36 @@ class App extends Component {
         
         
     }
+    handleGetPaletteInputChange(event){
+        this.setState({
+            existingPaletteInput: event.target.value
+        })
+    }
+    handleGetPalette(event){
+        //Set the palette name appropriatly
+        var name = this.state.existingPaletteInput
+        this.setState({
+            paletteName:name
+        })
+        var nameWithoutSpaces = name.replace(" ","%20")
+        console.log("name ",name)
+
+        //update the color cards
+        var colors = []
+        let url = "http://localhost:8080/getColorsByName/"+nameWithoutSpaces
+        fetch(url).then((response)=>{
+            response.json().then(result=>{
+                colors = result.colors
+                colors.forEach(color=>{
+                    this.setState({
+                        squares: [...this.state.squares,{id:this.state.count,color}],
+                        count:this.state.count+1
+                    })
+                })
+            })
+        })
+       
+    }
  
 
 
@@ -89,9 +119,7 @@ class App extends Component {
     var appStyle = {
         padding:50
     }
-    var listStyle ={
-        listStyleType: "none",
-    }
+
 
     var formStyle = {
         display: "block",
@@ -111,38 +139,22 @@ class App extends Component {
 
     return (
       <div style={appStyle} className="App">
-        <ul style={listStyle}><ColorList handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/></ul>
-            <input type="text" value={this.state.inputValue} onChange = {this.handleChange} style = {inputStyle} placeholder="Enter the hex code of a color..."/>
-            <ColorButton onClick = {this.handleSubmit} />
+        <ToggleDisplay if={this.state.paletteName != ""}>
+            <h1>{this.state.paletteName}</h1>
+        </ToggleDisplay>
+        <ToggleDisplay if={this.state.paletteName == ""}>
+            <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
+        </ToggleDisplay>
+        
+        <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
+        
+        <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
             
       </div>
     );
   }
 }
 
-class ColorList extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-           colors: this.props.colors 
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        this.setState({colors: nextProps.colors});
-    }
-    render(){
-        var squareStyle = {
-            display:"inline-block",
-            marginRight: 10
-        }
-        return(
-            <div id="ColorList">
-                {this.state.colors.map((color) => {
-                 return <li key = {color.id} style={squareStyle}><Card {...this.props} id = {color.id} color={color.color} /></li>
-                })}
-            </div>
-        )
-    }
-}
+
 
 export default App;
