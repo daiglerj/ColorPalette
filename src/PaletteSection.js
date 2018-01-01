@@ -11,7 +11,7 @@ export default class PaletteSection extends Component {
         return(
             <div>
             <input type="text" value={this.props.value} onChange = {this.props.handleChange} style = {this.props.inputStyle} placeholder="Enter the hex code of a color..."/>
-            <ColorButton onClick = {this.props.handleSubmit} />
+            <ColorButton onClick = {this.props.handleAddColor} />
             </div>
         )
     }

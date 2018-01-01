@@ -20,7 +20,7 @@ class App extends Component {
             count: 1
         }
         this.handleColorCodeChange = this.handleColorCodeChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAddColor = this.handleAddColor.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
         this.handleGetPaletteInputChange = this.handleGetPaletteInputChange.bind(this)
         this.handleGetPalette = this.handleGetPalette.bind(this)
@@ -48,7 +48,7 @@ class App extends Component {
         })
     }
     
-    handleSubmit(event){
+    handleAddColor(event){
         console.log("hello")
         this.setState({
             count: this.state.count+1
@@ -148,7 +148,7 @@ class App extends Component {
         
         <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
         
-        <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
+        <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleAddColor = {this.handleAddColor} />
             
       </div>
     );
