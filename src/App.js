@@ -86,7 +86,8 @@ class App extends Component {
         this.setState({
             squares: updatedSquares
         })
-        
+        var nameWithoutSpaces = this.state.paletteName.replace(" ","%20")
+        let url = "http://localhost:8080/addColor/"+nameWithoutSpaces
         
     }
     
