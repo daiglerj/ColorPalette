@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ColorButton extends Component {
+export default class AddColorButton extends Component {
     constructor(props){
         super(props)
         this.handleHoverIn = this.handleHoverIn.bind(this)

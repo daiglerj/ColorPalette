@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Card} from './ColorCard'
-import PaletteInput from './paletteInput'
-import PaletteSection from './PaletteSection'
-import Palette from "./Palette"
+import {Card} from './Components/CardComponents/ColorCard'
+import PaletteStart from './Components/PaletteStart'
+import AddColor from './Components/AddColor/AddColor'
+import Palette from "./Components/Palette"
 import ToggleDisplay from 'react-toggle-display';
 
 class App extends Component {
@@ -171,13 +170,21 @@ class App extends Component {
             <h1>{this.state.paletteName}</h1>
         </ToggleDisplay>
         <ToggleDisplay if={this.state.paletteName == ""}>
+<<<<<<< HEAD
             <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette} handleNewPaletteInput = {this.handleNewPaletteInput} 
         handleNewPalette = {this.handleNewPalette}/>
+=======
+            <PaletteStart inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
+>>>>>>> backend
         </ToggleDisplay>
         
         <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
         
+<<<<<<< HEAD
         <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleAddColor = {this.handleAddColor} />
+=======
+        <AddColor value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
+>>>>>>> backend
             
       </div>
     );

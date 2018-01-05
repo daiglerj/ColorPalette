@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import RemoveButton from './RemoveButton'
+import RemoveButton from './RemoveColorButton'
 
-class Square extends React.Component {
+class Color extends React.Component {
     render(){
         var squareStyle = {
             height: 150,
@@ -50,7 +50,7 @@ export class Card extends React.Component {
         }
         return(
             <div style ={cardStyle}>
-                <Square {...this.props}/>
+                <Color {...this.props}/>
                 <Label {...this.props}/>
             </div>
         )

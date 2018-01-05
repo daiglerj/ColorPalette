@@ -1,5 +1,8 @@
+/*
+    Section that holds the color cards once the user creates a palette or loads an existing one
+*/
 import React, {Component} from 'react'
-import {Card} from './ColorCard'
+import {Card} from './CardComponents/ColorCard'
 
 export default class Palette extends React.Component {
     constructor(props){
