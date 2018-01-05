@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Card} from './ColorCard'
-import PaletteInput from './paletteInput'
-import PaletteSection from './PaletteSection'
-import Palette from "./Palette"
+import {Card} from './Components/CardComponents/ColorCard'
+import PaletteStart from './Components/PaletteStart'
+import AddColor from './Components/AddColor/AddColor'
+import Palette from "./Components/Palette"
 import ToggleDisplay from 'react-toggle-display';
-  // Initialize Firebase
 
 class App extends Component {
     constructor(){
@@ -60,6 +58,13 @@ class App extends Component {
             squares: [...this.state.squares,{id:this.state.count,color:this.state.inputValue}],
         },()=>{
             console.log(this.state.squares)
+        })
+        var nameWithoutSpaces = this.state.paletteName.replace(" ","%20")
+        let url = "http://localhost:8080/addColor/"+nameWithoutSpaces
+        fetch(url,{
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({color:this.state.inputValue})
         })
         
     }
@@ -143,12 +148,12 @@ class App extends Component {
             <h1>{this.state.paletteName}</h1>
         </ToggleDisplay>
         <ToggleDisplay if={this.state.paletteName == ""}>
-            <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
+            <PaletteStart inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
         </ToggleDisplay>
         
         <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
         
-        <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
+        <AddColor value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
             
       </div>
     );

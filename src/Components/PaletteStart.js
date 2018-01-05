@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-export default class PaletteInput extends Component {
+export default class PaletteStart extends Component {
     constructor(){
         super()
     }
