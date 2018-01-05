@@ -15,11 +15,8 @@ export default class AddColor extends Component {
         return(
             <div>
             <input type="text" value={this.props.value} onChange = {this.props.handleChange} style = {this.props.inputStyle} placeholder="Enter the hex code of a color..."/>
-<<<<<<< HEAD:src/PaletteSection.js
-            <ColorButton onClick = {this.props.handleAddColor} />
-=======
+
             <AddColorButton onClick = {this.props.handleSubmit} />
->>>>>>> backend:src/Components/AddColor/AddColor.js
             </div>
         )
     }

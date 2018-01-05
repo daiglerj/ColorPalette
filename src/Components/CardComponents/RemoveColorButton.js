@@ -22,7 +22,7 @@ export default class RemoveButton extends Component {
     }
     render(){
         return(
-            <button className="Remove" onClick={this.props.handleRemove.bind("e",this.props.id)}>Remove</button>
+            <button className="Remove" onClick={this.props.handleRemove.bind("e",this.props.id,this.props.color)}>Remove</button>
         )
     }
 }

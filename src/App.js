@@ -69,15 +69,16 @@ class App extends Component {
         })
 
     }
-    handleRemove(index,event){
+    handleRemove(id,color,event){
+        console.log(this.state.squares)
         var length = this.state.squares.length
+        
+        console.log(color)
         var updatedSquares = []
-        console.log(index)
+        console.log(id)
         //remove from interface
         for(var i=0;i<length;i++){
-            //console.log(i)
-            //console.log(this.state.squares[0])
-            if(this.state.squares[i].id != index){
+            if(this.state.squares[i].id != id){
                 var updatedSquares = [...updatedSquares,this.state.squares[i]] 
             }
         }
@@ -86,8 +87,12 @@ class App extends Component {
             squares: updatedSquares
         })
         var nameWithoutSpaces = this.state.paletteName.replace(" ","%20")
-        let url = "http://localhost:8080/addColor/"+nameWithoutSpaces
-        
+        let url = "http://localhost:8080/deleteColor/"+nameWithoutSpaces
+        fetch(url,{
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({color:color})
+        })
     }
     
     handleGetPaletteInputChange(event){
@@ -170,21 +175,14 @@ class App extends Component {
             <h1>{this.state.paletteName}</h1>
         </ToggleDisplay>
         <ToggleDisplay if={this.state.paletteName == ""}>
-<<<<<<< HEAD
-            <PaletteInput inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette} handleNewPaletteInput = {this.handleNewPaletteInput} 
-        handleNewPalette = {this.handleNewPalette}/>
-=======
+
             <PaletteStart inputStyles={inputStyle} handleExistingPaletteInput={this.handleGetPaletteInputChange} handleGetPalette = {this.handleGetPalette}/>
->>>>>>> backend
         </ToggleDisplay>
         
         <Palette handleRemove = {this.handleRemove} colors={this.state.squares} count={this.state.count}/>
         
-<<<<<<< HEAD
-        <PaletteSection value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleAddColor = {this.handleAddColor} />
-=======
+
         <AddColor value= {this.state.inputValue} handleChange = {this.handleColorCodeChange} inputStyle = {inputStyle} handleSubmit = {this.handleSubmit} />
->>>>>>> backend
             
       </div>
     );
